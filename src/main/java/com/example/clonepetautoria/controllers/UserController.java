@@ -26,7 +26,7 @@ public class UserController {
     public ResponseEntity<UserModel> create(@RequestBody UserModel user) {
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
     }
-    @PatchMapping
+    @PutMapping
     public ResponseEntity<UserModel> update(@RequestBody UserModel user){
         return new ResponseEntity<>(userService.updateUser(user),HttpStatus.OK);
     }

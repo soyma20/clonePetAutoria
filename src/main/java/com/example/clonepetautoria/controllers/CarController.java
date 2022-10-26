@@ -18,7 +18,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/cars")
 public class CarController {
-    private CarDAO carDAO;
     private CarService carService;
 
     @GetMapping
@@ -38,12 +37,12 @@ public class CarController {
                        @RequestParam List<MultipartFile> files) throws IOException {
         carService.createCar(description, year, price, files);
     }
-    @PatchMapping()
+    @PutMapping()
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void update(@RequestBody CarModel carModel){
         carService.updateCar(carModel);
     }
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public void addImage(@PathVariable Integer id, @RequestParam MultipartFile file) throws IOException {
         carService.addImage(id, file);
     }
