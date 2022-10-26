@@ -21,16 +21,17 @@ public class CarModel {
     private Currency currency;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name= "car_images",
+            name = "car_images",
             joinColumns = @JoinColumn(name = "car_id"),
             inverseJoinColumns = @JoinColumn(name = "image_id")
     )
     private List<ImagePath> imagesPath = new ArrayList<>(); //name of file
 
-    public CarModel(String description, int year, int price) {
+    public CarModel(String description, int year, int price, Currency currency) {
         this.description = description;
         this.year = year;
         this.price = price;
+        this.currency = currency;
     }
 
     public void addImagePath(ImagePath imagePath) {

@@ -1,6 +1,8 @@
 package com.example.clonepetautoria.services;
 
 import com.example.clonepetautoria.dao.CarDAO;
+import com.example.clonepetautoria.models.Currency;
+import com.example.clonepetautoria.models.dto.CarRequestDTO;
 import com.example.clonepetautoria.models.dto.CarResponseDTO;
 import com.example.clonepetautoria.models.CarModel;
 import com.example.clonepetautoria.models.ImagePath;
@@ -28,12 +30,12 @@ public class CarService {
         return carDAO.findById(id).map(CarResponseDTO::new).get();
     }
 
-    public void createCar(String description, Integer year, Integer price, List<MultipartFile> files) throws IOException {
-        CarModel car = new CarModel(description, year, price);
-        for (MultipartFile file : files) {
-            file.transferTo(new File(System.getProperty("user.home") + File.separator + "newfiles" + File.separator + file.getOriginalFilename()));
-            car.addImagePath(new ImagePath(file.getOriginalFilename()));
-        }
+    public void createCar(CarRequestDTO carRequestDTO) throws IOException {
+        System.out.println(carRequestDTO);
+//        if (carRequestDTO.getCurrency() == 0){
+//            carRequestDTO.setCurrency(Currency.USD);
+//        }
+        CarModel car = new CarModel(carRequestDTO.getDescription(), carRequestDTO.getYear(), carRequestDTO.getPrice(), carRequestDTO.getCurrency());
         carDAO.save(car);
     }
 

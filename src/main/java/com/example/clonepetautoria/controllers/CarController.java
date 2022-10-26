@@ -2,6 +2,7 @@ package com.example.clonepetautoria.controllers;
 
 
 import com.example.clonepetautoria.dao.CarDAO;
+import com.example.clonepetautoria.models.dto.CarRequestDTO;
 import com.example.clonepetautoria.models.dto.CarResponseDTO;
 import com.example.clonepetautoria.models.CarModel;
 import com.example.clonepetautoria.services.CarService;
@@ -31,11 +32,8 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void create(@RequestParam String description,
-                       @RequestParam Integer year,
-                       @RequestParam Integer price,
-                       @RequestParam List<MultipartFile> files) throws IOException {
-        carService.createCar(description, year, price, files);
+    public void create(@RequestBody CarRequestDTO carRequestDTO) throws IOException {
+        carService.createCar(carRequestDTO);
     }
     @PutMapping()
     @ResponseStatus(HttpStatus.ACCEPTED)
