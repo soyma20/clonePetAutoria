@@ -22,12 +22,21 @@ public class UserController {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserModel> getUserById(@PathVariable Integer id) {
+        UserModel userById = userService.getUserById(id);
+        System.out.println(userById);
+        return new ResponseEntity<>(userById, HttpStatus.OK);
+
+    }
+
     @PostMapping
     public ResponseEntity<UserModel> create(@RequestBody UserModel user) {
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
     }
+
     @PutMapping
-    public ResponseEntity<UserModel> update(@RequestBody UserModel user){
-        return new ResponseEntity<>(userService.updateUser(user),HttpStatus.OK);
+    public ResponseEntity<UserModel> update(@RequestBody UserModel user) {
+        return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
     }
 }

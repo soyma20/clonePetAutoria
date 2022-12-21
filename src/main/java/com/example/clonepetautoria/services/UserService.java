@@ -16,6 +16,10 @@ public class UserService {
         return userDAO.findAll();
     }
 
+    public UserModel getUserById(Integer id){
+        return userDAO.findById(id).get();
+    }
+
     public UserModel saveUser(UserModel user) {
         return userDAO.save(user);
     }
